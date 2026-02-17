@@ -70,7 +70,6 @@ async fn handle_request(request: SellerRequest) -> SellerResponse {
                 seller_name: seller_name.clone(),
             }).await {
                 Ok(CustomerDbResponse::Seller(Some(seller))) => {
-                    // Simple password check (in production, use hashing)
                     if seller.password == password {
                         match send_to_customer_db(CustomerDbRequest::CreateSession {
                             user_id: seller.seller_id,
